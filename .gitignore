@@ -2,4 +2,4 @@
 .DS_Store
 *.pyc
 log.txt
-
+metadata/objects/*json

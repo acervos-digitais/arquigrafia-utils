@@ -32,7 +32,8 @@ def hls_to_rgb255(c):
 
 def hls_order(c):
   _,l,s = c
-  return 2 * abs(l - 0.5) + (1.0 - s)
+  l_term = 2 * abs(l - 0.5)
+  return l_term + (1.0 - s) if l_term < 0.5 else 1.5 * l_term
 
 def hls_order_from_rgb255(c):
   return hls_order(rgb_to_hls(*rgb255_to_rgb01(c)))

@@ -3,3 +3,4 @@
 *.pyc
 log.txt
 metadata/objects/*json
+metadata/csvs/*csv

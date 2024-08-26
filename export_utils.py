@@ -28,9 +28,10 @@ def combine_objs_caps(objs_path, caps_path):
         obj_data[l] = obj_data.get(l, []) + [id]
 
       color_key[id] = hls_order_from_rgb255(img_data[id]["dominant_color"]["by_hue"])
+
       if path.isfile(input_caps_file_path):
         img_data[id].pop("caption", None)
-        with open(input_objs_file_path, "r", encoding="utf8") as capf:
+        with open(input_caps_file_path, "r", encoding="utf8") as capf:
           img_data[id]["captions"] = json.load(capf)
 
   # order each object's file list by color order
@@ -69,7 +70,7 @@ def combine_by_key(in_path, key):
 def export_by_keys(in_path, keys):
   for k in keys:
     key_data = combine_by_key(in_path, k)
-    out_file_path = path.join("metadata", "json", f"_{k}.json")
+    out_file_path = path.join("metadata", "json", f"{k}.json")
     with open(out_file_path, "w", encoding="utf8") as f:
       json.dump(key_data, f, separators=(',',':'), sort_keys=True, ensure_ascii=False)
 
@@ -81,7 +82,7 @@ def export_all_captions(in_path):
 
   for l in langs:
     for m in models:
-      out_file_path = path.join("metadata", "json", f"_captions_{l}_{m}.json")
+      out_file_path = path.join("metadata", "json", f"captions_{l}_{m}.json")
       cap_data_lm = {id: caps[l][m] for id,caps in cap_data.items()}
       with open(out_file_path, "w", encoding="utf8") as f:
         json.dump(cap_data_lm, f, separators=(',',':'), sort_keys=True, ensure_ascii=False)

@@ -1,4 +1,5 @@
 IMAGES_PATH = "../../imgs/arquigrafia"
+AUDIO_PATH = "../../mp3s/captions"
 OBJECTS_PATH = "./metadata/json/objects"
 CAPTIONS_PATH = "./metadata/json/captions"
 

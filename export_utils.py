@@ -14,9 +14,6 @@ def combine_objs_caps(objs_paths, caps_path):
   # obj name -> image name
   obj_data = {}
 
-  # image name -> color order key
-  color_key = {}
-
   for objs_path in objs_paths:
     input_objs_files = sorted([f for f in listdir(objs_path) if f.endswith("json")])
 
@@ -35,17 +32,10 @@ def combine_objs_caps(objs_paths, caps_path):
         for l in mimg_data["boxes"].keys():
           obj_data[l] = obj_data.get(l, []) + [id]
 
-        if id not in color_key:
-          color_key[id] = hls_order_from_rgb255(img_data[id]["dominant_color"]["by_hue"])
-
         if "captions" not in img_data[id] and path.isfile(input_caps_file_path):
           img_data[id].pop("caption", None)
           with open(input_caps_file_path, "r", encoding="utf8") as capf:
             img_data[id]["captions"] = json.load(capf)
-
-  # order each object's file list by color order
-  for k in obj_data.keys():
-    obj_data[k] = sorted(obj_data[k], key=lambda x: color_key[x])
 
   return {
     "objects": obj_data,

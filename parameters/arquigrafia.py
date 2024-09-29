@@ -5,6 +5,8 @@ CAPTIONS_PATH = "./metadata/json/captions"
 
 DB_FILE_PATH = "./metadata/json/objects.json"
 
+COLORS = ["COUNT", "HUE", "PALETTE"]
+
 OBJECTS = [
   {
     "minaret": 0.25,

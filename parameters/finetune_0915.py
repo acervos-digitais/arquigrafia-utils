@@ -5,6 +5,8 @@ CAPTIONS_PATH = "./metadata/json/captions-ft-0915"
 
 DB_FILE_PATH = "./metadata/json/objects-ft-0915.json"
 
+COLORS = None
+
 OBJECTS = [
   {
     "inclined walkway": 0.32,

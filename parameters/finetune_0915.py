@@ -23,18 +23,20 @@ OBJECTS = [
   },
 ]
 
-OBJECT2LABEL = {}
+OBJECT2LABEL = {
+  "inclined walkway": "ramp",
+  "pedestrian ramp": "ramp",
+  "door overhang": "awning",
+  "window deck": "balcony",
+  "street sign": "sign",
+  "placard": "sign",
+  "signboard": "sign",
+  "billboard": "sign",
+}
 
 LABEL2DISPLAY = {
-  "inclined walkway": "inclined walkway",
-  "pedestrian ramp": "pedestrian ramp",
   "ramp": "ramp",
-  "door overhang": "door overhang",
   "awning": "awning",
   "balcony": "balcony",
-  "window deck": "window deck",
-  "street sign": "street sign",
-  "placard": "placard",
-  "signboard": "signboard",
-  "billboard": "billboard",
+  "sign": "sign",
 }

@@ -1,5 +1,5 @@
 IMAGES_PATH = "../../imgs/arquigrafia"
-CAPTIONS_PATH = "./metadata/json/captions"
+CAPTIONS_PATH = None
 OBJECTS_PATH = "./metadata/json/objects-ft-0915"
 
 DB_FILE_PATH = "./metadata/json/objects-ft-0915.json"

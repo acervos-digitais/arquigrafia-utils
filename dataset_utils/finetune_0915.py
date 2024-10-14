@@ -90,3 +90,20 @@ class FTUtils():
       int((box[2] - box[0]) * iw),
       int((box[3] - box[1]) * ih),
     ]
+
+  @staticmethod
+  def as_coco(img_id, objects):
+    coco_anns = []
+    for i in range(len(objects["category"])):
+      coco_anns.append({
+        "image_id": img_id,
+        "category_id": objects["category"][i],
+        "iscrowd": 0,
+        "area": objects["area"][i],
+        "bbox": list(objects["bbox"][i]),
+      })
+
+    return {
+      "image_id": img_id,
+      "annotations": coco_anns,
+    }

@@ -81,6 +81,13 @@ OBJECTS = [
     "car": 0.32,
     "truck": 0.42,
     "vehicle": 0.75,
+  },
+  {
+    "street sign": 0.275,
+    "placard": 0.275,
+    "signboard": 0.275,
+    "billboard": 0.275,
+    "sign": 0.8
   }
 ]
 
@@ -127,6 +134,11 @@ OBJECT2LABEL = {
 
   "car": "vehicle",
   "truck": "vehicle",
+
+  "street sign": "sign",
+  "placard": "sign",
+  "signboard": "sign",
+  "billboard": "sign",
 }
 
 LABEL2DISPLAY = {
@@ -155,4 +167,6 @@ LABEL2DISPLAY = {
   "sky":"sky",
 
   "vehicle": "vehicle",
+
+  "sign": "sign",
 }

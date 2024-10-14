@@ -16,11 +16,6 @@ OBJECTS = [
     "awning": 0.25,
     "balcony": 0.25,
     "window deck": 0.25,
-    "street sign": 0.25,
-    "placard": 0.25,
-    "signboard": 0.25,
-    "billboard": 0.25,
-    "sign": 0.8
   },
 ]
 
@@ -30,15 +25,10 @@ OBJECT2LABEL = {
   "door overhang": "awning",
   "door canopy": "awning",
   "window deck": "balcony",
-  "street sign": "sign",
-  "placard": "sign",
-  "signboard": "sign",
-  "billboard": "sign",
 }
 
 LABEL2DISPLAY = {
   "ramp": "ramp",
   "awning": "awning",
   "balcony": "balcony",
-  "sign": "sign",
 }

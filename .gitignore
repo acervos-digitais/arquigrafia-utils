@@ -3,3 +3,5 @@
 *.pyc
 log.txt
 openai_api.py
+logs/
+lightning_logs/

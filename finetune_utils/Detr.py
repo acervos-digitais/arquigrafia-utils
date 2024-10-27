@@ -77,6 +77,7 @@ class DetrDataLoader:
 
   def __init__(self, dataset_name, processor_name):
     hf_ds = load_dataset(dataset_name)
+    self.ds = hf_ds
     self.processor = AutoImageProcessor.from_pretrained(processor_name)
     self.categories = hf_ds["train"].features["objects"].feature["category"].names
     self.id2label = {index: x for index, x in enumerate(self.categories, start=0)}
@@ -88,8 +89,8 @@ class DetrDataLoader:
     train_ds = hf_ds["train"].with_transform(train_transform)
     validation_ds = hf_ds["test"].with_transform(validation_transform)
 
-    self.train = DataLoader(train_ds, collate_fn=DetrDataLoader.collate_fn, batch_size=4, num_workers=4, shuffle=True)
-    self.validation = DataLoader(validation_ds, collate_fn=DetrDataLoader.collate_fn, batch_size=4, num_workers=4)
+    self.train = DataLoader(train_ds, collate_fn=DetrDataLoader.collate_fn, batch_size=4, num_workers=8, shuffle=True)
+    self.validation = DataLoader(validation_ds, collate_fn=DetrDataLoader.collate_fn, batch_size=4, num_workers=8)
 
   def getTrain(self):
     return self.train
@@ -102,6 +103,8 @@ class Detr(pl.LightningModule):
     super().__init__()
     self.train_dl = dataloader.getTrain()
     self.validation_dl = dataloader.getValidation()
+    self.train_ds = dataloader.ds["train"]
+    self.validation_ds = dataloader.ds["test"]
     self.processor = dataloader.processor
     self.model = AutoModelForObjectDetection.from_pretrained(
       model_name,
@@ -115,6 +118,55 @@ class Detr(pl.LightningModule):
     self.lr_backbone = lr_backbone
     self.weight_decay = weight_decay
     self.save_hyperparameters()
+
+  def detr_eval(self, dataset, min_threshold=0.2, thresholds=[]):
+    num_correct = 0
+    num_preds = 0
+    num_labels = 0
+
+    self.model.to("cuda")
+    with torch.no_grad():
+      for row in dataset:
+        img = row["image"]
+        iw, ih = img.size
+
+        inputs = self.processor(images=img, return_tensors="pt")
+        pixel_values = inputs["pixel_values"].to("cuda")
+
+        outputs = self.model(pixel_values=pixel_values, pixel_mask=None)
+
+        ppo = self.processor.post_process_object_detection(outputs,
+                                                           target_sizes=[(ih, iw)],
+                                                           threshold=min_threshold)[0]
+
+        preds = [l.item() for l in ppo["labels"]]
+        scores = [s.item() for s in ppo["scores"]]
+        boxes = [b.tolist() for b in ppo["boxes"]]
+
+        if len(thresholds) > 0:
+          f_preds = []
+          f_scores = []
+          f_boxes = []
+
+          for p,s,b in zip(preds, scores, boxes):
+            if s > thresholds[p]:
+              f_preds.append(p)
+              f_scores.append(s)
+              f_boxes.append(b)
+
+          preds, scores, boxes = f_preds, f_scores, f_boxes
+
+        labels = row["objects"]["category"]
+
+        cpreds = [1 for p in set(preds) if p in labels]
+
+        num_correct += len(cpreds)
+        num_preds += len(preds)
+        num_labels += len(labels)
+    
+    precision = round(num_correct / num_preds, 4) if num_preds != 0 else 0
+    recall = round(num_correct / num_labels, 4) if num_labels != 0 else 0
+    return precision, recall
 
   def forward(self, pixel_values, pixel_mask):
     return self.model(pixel_values=pixel_values, pixel_mask=pixel_mask)
@@ -139,11 +191,11 @@ class Detr(pl.LightningModule):
         self.log("train_" + k, v.item())
 
       if batch_idx == 0:
-        precision, recall = eval_detr(self.model, self.processor, ft0915_ds["train"])
+        precision, recall = self.detr_eval(self.train_ds)
         self.log("train_precision", precision)
         self.log("train_recall", recall)
-    except:
-      pass
+    except Exception as e:
+      print("training step exception:", e)
 
     return loss
 
@@ -155,11 +207,11 @@ class Detr(pl.LightningModule):
         self.log("validation_" + k, v.item())
 
       if batch_idx == 0:
-        precision, recall = eval_detr(self.model, self.processor, ft0915_ds["test"])
+        precision, recall = self.detr_eval(self.validation_ds)
         self.log("validation_precision", precision)
         self.log("validation_recall", recall)
-    except:
-      pass
+    except Exception as e:
+      print("validation step exception:", e)
 
     return loss
 

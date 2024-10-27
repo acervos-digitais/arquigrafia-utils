@@ -61,4 +61,5 @@ class Owl2:
   @staticmethod
   def all_objects(img, labels_in, labels_out, tholds):
     detected_objs = Owl2.run_object_detection(img, labels_in, labels_out, tholds)
+    # TODO: reorg to be consistent with top_objects()
     return detected_objs

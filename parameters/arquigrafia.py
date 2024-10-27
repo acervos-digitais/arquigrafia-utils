@@ -91,6 +91,12 @@ OBJECTS = [
   }
 ]
 
+DETR_OBJECTS = {
+  "awning": 0.3,
+  "balcony": 0.3,
+  "ramp": 0.4,
+}
+
 OBJECT2LABEL = {
   "minaret": "tower",
   "stair railing": "railing",
@@ -164,9 +170,13 @@ LABEL2DISPLAY = {
   "person": "person",
   "water": "water",
   "cloud": "cloud",
-  "sky":"sky",
+  "sky": "sky",
 
   "vehicle": "vehicle",
 
   "sign": "sign",
+
+  "awning": "awning",
+  "balcony": "balcony",
+  "ramp": "ramp",
 }

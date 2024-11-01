@@ -1,6 +1,9 @@
+from models.objects_models import Owl2 as Owl2
+
 IMAGES_PATH = "../../imgs/arquigrafia"
 AUDIO_PATH = "../../mp3s/captions"
-OBJECTS_PATH = "./metadata/json/objects"
+OBJECTS_PATH = "./metadata/json/objects_owl"
+DETR_OBJECTS_PATH = "./metadata/json/objects_detr"
 CAPTIONS_PATH = "./metadata/json/captions"
 
 DB_FILE_PATH = "./metadata/json/objects.json"
@@ -62,6 +65,8 @@ OBJECTS = [
   },
     {
     "person": 0.35,
+    "people": 0.35,
+    "human": 0.35,
     "animal": 0.8,
     "cat": 0.3,
     "dog": 0.3,
@@ -88,13 +93,18 @@ OBJECTS = [
     "signboard": 0.275,
     "billboard": 0.275,
     "sign": 0.8
+  },
+   {
+    "awning": 0.3,
+    "balcony": 0.3,
+    "ramp": 0.3,
   }
 ]
 
 DETR_OBJECTS = {
-  "awning": 0.3,
-  "balcony": 0.3,
-  "ramp": 0.4,
+  "awning": 0.4,
+  "balcony": 0.4,
+  "ramp": 0.5,
 }
 
 OBJECT2LABEL = {
@@ -127,6 +137,9 @@ OBJECT2LABEL = {
   "bush": "greenery",
   "flower": "greenery",
   "vegetation": "greenery",
+
+  "people": "person",
+  "human": "person",
 
   "cat": "animal",
   "dog": "animal",

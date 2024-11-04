@@ -20,7 +20,6 @@ OBJECTS = [
     "table": 0.45,
     "desk": 0.25,
     "chair": 0.24,
-    "inclined walkway": 0.32,
     "sculpture": 0.4,
     "painting": 0.4,
     "vertical pillar": 0.35,
@@ -96,8 +95,7 @@ OBJECTS = [
   },
    {
     "awning": 0.3,
-    "balcony": 0.3,
-    "ramp": 0.3,
+    "balcony": 0.3
   }
 ]
 
@@ -163,7 +161,6 @@ OBJECT2LABEL = {
 LABEL2DISPLAY = {
   "tower": "chimney/tower",
   "railing": "railing/banister",
-  "inclined walkway": "ramp",
   "stairs": "stairs",
   "table": "table",
   "building door": "door",

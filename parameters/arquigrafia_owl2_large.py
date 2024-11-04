@@ -12,15 +12,15 @@ COLORS = ["COUNT", "HUE", "PALETTE"]
 
 OBJECTS = [
   {
-    "minaret": 0.25,
-    "tower": 0.6,
+    "minaret": 0.3,
+    "tower": 0.65,
     "railing": 0.4,
     "stair railing": 0.41,
     "guard railing": 0.4,
-    "table": 0.45,
+    "table": 0.42,
     "desk": 0.25,
-    "chair": 0.24,
-    "sculpture": 0.35,
+    "chair": 0.22,
+    "sculpture": 0.38,
     "painting": 0.35,
     "vertical pillar": 0.35,
     "stairs": 0.4,
@@ -28,15 +28,15 @@ OBJECTS = [
     "stoop stairs": 0.35,
   },
   {
-    "window": 0.2,
-    "room door": 0.25,
-    "building door": 0.22,
+    "window": 0.25,
+    "room door": 0.26,
+    "building door": 0.25,
     "masonry": 0.2,
 
-    "concrete wall": 0.2,
-    "exposed concrete": 0.2,
-    "concrete structure": 0.2,
-    "poured concrete": 0.2,
+    "concrete wall": 0.22,
+    "exposed concrete": 0.22,
+    "concrete structure": 0.22,
+    "poured concrete": 0.22,
   
     "glass window": 0.2,
     "glass door": 0.2,
@@ -63,9 +63,9 @@ OBJECTS = [
     "greenery": 0.2,
   },
     {
-    "person": 0.3,
-    "people": 0.3,
-    "human": 0.3,
+    "person": 0.23,
+    "people": 0.23,
+    "human": 0.23,
     "animal": 0.8,
     "cat": 0.3,
     "dog": 0.3,
@@ -73,18 +73,18 @@ OBJECTS = [
     "bird": 0.3,
   },
   {
-    "water": 0.3,
-    "pool": 0.3,
-    "reflecting pool": 0.3,
-    "pond": 0.3,
-    "lake": 0.3,
-    "cloud": 0.3,
+    "water": 0.31,
+    "pool": 0.31,
+    "reflecting pool": 0.31,
+    "pond": 0.31,
+    "lake": 0.31,
+    "cloud": 0.275,
     "sky": 0.3
   },
   {
-    "car": 0.32,
-    "truck": 0.42,
-    "vehicle": 0.75,
+    "car": 0.3,
+    "truck": 0.4,
+    "vehicle": 0.72,
   },
   {
     "street sign": 0.275,
@@ -95,8 +95,7 @@ OBJECTS = [
   },
   {
     "awning": 0.3,
-    "balcony": 0.3,
-    "ramp": 0.3,
+    "balcony": 0.33
   }
 ]
 
@@ -162,7 +161,6 @@ OBJECT2LABEL = {
 LABEL2DISPLAY = {
   "tower": "chimney/tower",
   "railing": "railing/banister",
-  "inclined walkway": "ramp",
   "stairs": "stairs",
   "table": "table",
   "building door": "door",

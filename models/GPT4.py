@@ -35,6 +35,9 @@ class GPT4:
       max_tokens=200,
     )
 
-    caps = response.choices[0].message.content.split(LSEP)
+    cap_content = response.choices[0].message.content
+    cap_content_fix = cap_content.replace(LSEP, f" {LSEP} ").replace("separador", f" {LSEP} ")
+    caps = cap_content_fix.split(LSEP)
+
     clean_caps = [p + GPT4.clean_caption(c) for p,c in zip(CAP_PREFIX, caps)]
     return tuple(clean_caps)

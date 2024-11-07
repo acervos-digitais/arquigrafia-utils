@@ -1,7 +1,5 @@
 from models.objects_models import Owl2 as Owl2
 
-IMAGES_PATH = "../../imgs/arquigrafia"
-AUDIO_PATH = "../../mp3s/captions"
 OBJECTS_PATH = "./metadata/json/objects_owl"
 DETR_OBJECTS_PATH = "./metadata/json/objects_detr"
 CAPTIONS_PATH = "./metadata/json/captions"
@@ -23,6 +21,7 @@ OBJECTS = [
     "sculpture": 0.4,
     "painting": 0.4,
     "vertical pillar": 0.35,
+    "pillar": 0.95,
     "stairs": 0.4,
     "stoop steps": 0.35,
     "stoop stairs": 0.35,
@@ -31,23 +30,27 @@ OBJECTS = [
     "window": 0.2,
     "room door": 0.25,
     "building door": 0.22,
+    "door": 0.95,
     "masonry": 0.2,
 
     "concrete wall": 0.2,
     "exposed concrete": 0.2,
     "concrete structure": 0.2,
     "poured concrete": 0.2,
+    "concrete": 0.95,
   
     "glass window": 0.2,
     "glass door": 0.2,
     "mirror": 0.2,
+    "glass": 0.95,
   },
   {
     "wood fence": 0.3,
     "wood railing": 0.35,
-    "wood pilar": 0.3,
+    "wood pillar": 0.3,
     "wood door": 0.21,
     "wood board": 0.21,
+    "wood": 0.95,
 
     "metal fence": 0.4,
     "metal railing": 0.22,
@@ -103,90 +106,4 @@ DETR_OBJECTS = {
   "awning": 0.4,
   "balcony": 0.4,
   "ramp": 0.5,
-}
-
-OBJECT2LABEL = {
-  "minaret": "tower",
-  "stair railing": "railing",
-  "guard railing": "railing",
-  "stoop steps": "stairs",
-  "stoop stairs": "stairs",
-  "desk": "table",
-  "room door": "building door",
-
-  "exposed concrete": "concrete wall",
-  "concrete structure": "concrete wall",
-  "poured concrete": "concrete wall",
-
-  "glass window": "mirror",
-  "glass door": "mirror",
-
-  "wood railing": "wood fence",
-  "wood pilar":"wood fence",
-  "wood door": "wood fence",
-  "wood board": "wood fence",
-
-  "metal fence": "wrought",
-  "metal railing": "wrought",
-
-  "tree": "greenery",
-  "grass": "greenery",
-  "shrub": "greenery",
-  "bush": "greenery",
-  "flower": "greenery",
-  "vegetation": "greenery",
-
-  "people": "person",
-  "human": "person",
-
-  "cat": "animal",
-  "dog": "animal",
-  "pigeon": "animal",
-  "bird": "animal",
-
-  "pool": "water",
-  "reflecting pool": "water",
-  "pond": "water",
-  "lake": "water",
-
-  "car": "vehicle",
-  "truck": "vehicle",
-
-  "street sign": "sign",
-  "placard": "sign",
-  "signboard": "sign",
-  "billboard": "sign",
-}
-
-LABEL2DISPLAY = {
-  "tower": "chimney/tower",
-  "railing": "railing/banister",
-  "stairs": "stairs",
-  "table": "table",
-  "building door": "door",
-  "concrete wall": "concrete",
-  "masonry": "masonry",
-  "mirror": "glass",
-  "wood fence": "wood",
-  "wrought": "metal",
-  "greenery": "vegetation",
-  "chair": "chair",
-  "painting": "painting",
-  "sculpture": "sculpture",
-  "vertical pillar": "pillar",
-  "window": "window",
-
-  "animal": "animal",
-  "person": "person",
-  "water": "water",
-  "cloud": "cloud",
-  "sky": "sky",
-
-  "vehicle": "vehicle",
-
-  "sign": "sign",
-
-  "awning": "awning",
-  "balcony": "balcony",
-  "ramp": "ramp",
 }

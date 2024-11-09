@@ -1,5 +1,6 @@
 IMAGES_PATH = "../../imgs/arquigrafia"
 AUDIO_PATH = "../../mp3s/captions"
+AUDIO_PATH_ALL = "../../mp3s/captions_all"
 
 OBJECT2LABEL = {
   "minaret": "tower",
@@ -9,7 +10,7 @@ OBJECT2LABEL = {
   "stoop steps": "stairs",
   "stoop stairs": "stairs",
   "desk": "table",
-  "room door": "building door",
+  "room door": "door",
   "building door": "door",
 
   "exposed concrete": "concrete",

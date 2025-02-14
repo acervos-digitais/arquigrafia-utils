@@ -38,8 +38,9 @@ def hls_order(c):
 def hls_order_from_rgb255(c):
   return hls_order(rgb_to_hls(*rgb255_to_rgb01(c)))
 
-def get_dominant_colors(pimg):
-  np_img = np.array(pimg).astype(np.float32)
+def get_dominant_colors(pimg, max_dim=256):
+  rpimg = resize_PIL(pimg, max_dim)
+  np_img = np.array(rpimg).astype(np.float32)
   _, labels, centers = cv2.kmeans(np_img.reshape(-1, 3), **CV_KMEANS_PARAMS)
   centers = centers.astype(np.uint8)
 
